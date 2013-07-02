@@ -97,7 +97,7 @@ class BuiltinConfig extends AbstractConfig
     {
         $name = $this->normalizeName($name, "retrieve");
 
-        if (array_key_exists($name, $this->options)) {
+        if (isset($this->options[$name])) {
             $option = $this->options[$name];
             $option = $this->normalizeValue($option, "retrieve");
         }
@@ -128,7 +128,7 @@ class BuiltinConfig extends AbstractConfig
     {
         try {
             $name = $this->normalizeName($name, "lookup");
-            $bool = array_key_exists($name, $this->options);
+            $bool = ( isset($this->options[$name]) ? true : false );
             $bool && $this->normalizeValue($this->options[$name], "use");
         }
         catch (\Exception $error) {
